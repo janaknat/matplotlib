@@ -23,6 +23,11 @@ jobs:
         - os: ubuntu-18.04
           cibw_archs_linux: 'aarch64'
           cibw_numpy_version: 1.19.3
+        exlude:
+        - os: windows-latest
+          cibw_archs_linux: 'aarch64'
+        - os: macos-latest
+          cibw_archs_linux: 'aarch64'
 
     steps:
       - name: Set up QEMU
