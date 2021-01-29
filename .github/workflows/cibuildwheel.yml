@@ -46,6 +46,11 @@ jobs:
         run: |
           cp setup.cfg.template setup.cfg
 
+      - name: ENV Variables
+        run: |
+          echo "NUMPY=${{ matrix.cibw_numpy_version }}"
+          echo "ARCH=${{ matrix.cibw_archs_linux }}"
+
       - name: Build wheels for CPython 3.9
         run: |
           python -m cibuildwheel --output-dir dist
