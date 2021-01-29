@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, windows-latest, macos-latest]
-        cibw_archs_linux: ["auto"]
-        cibw_numpy_version: [1.16]
+        cibw_archs_linux: [auto]
+        cibw_numpy_version: 1.16
         include:
           - os: ubuntu-18.04
             cibw_archs_linux: "aarch64"
@@ -58,7 +58,7 @@ jobs:
           CIBW_BUILD: "cp39-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: pip install certifi numpy==${{ matrix.cibw_numpy_version }}
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.19.3
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
 
