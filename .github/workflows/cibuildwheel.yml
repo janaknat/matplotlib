@@ -63,7 +63,6 @@ jobs:
           CIBW_BUILD: "cp39-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_MANYLINUX_AARCH64_IMAGE: dockcross/manylinux2014-aarch64
           CIBW_BEFORE_BUILD: pip install certifi numpy==1.19.3
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
