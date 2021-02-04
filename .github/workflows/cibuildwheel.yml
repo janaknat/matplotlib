@@ -20,14 +20,13 @@ jobs:
         include:
           - os: ubuntu-18.04
             cibw_archs_linux: "aarch64"
-            cibw_numpy_version: 1.19.3
 
     steps:
-            #- name: Set up QEMU
-            #if: runner.os == 'Linux'
-            #uses: docker/setup-qemu-action@v1
-            ##with:
-            #platforms: arm64
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: arm64
 
       - uses: actions/checkout@v2
         with:
@@ -37,6 +36,12 @@ jobs:
         name: Install Python
         with:
           python-version: '3.7'
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ matrix.os }}-${{ matrix.cibw_archs_linux }}
 
       - name: Install cibuildwheel
         run: |
@@ -71,7 +76,7 @@ jobs:
           CIBW_SKIP: "cp35-* cp36-* cp39-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: pip install certifi numpy==${{ matrix.cibw_numpy_version }}
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.16
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
 
@@ -82,7 +87,7 @@ jobs:
           CIBW_BUILD: "cp36-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: pip install certifi numpy==${{ matrix.cibw_numpy_version }}
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.16
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
         if: >
@@ -94,7 +99,7 @@ jobs:
           python -m cibuildwheel --output-dir dist
         env:
           CIBW_BUILD: "pp3?-*"
-          CIBW_BEFORE_BUILD: pip install certifi numpy==${{ matrix.cibw_numpy_version }}
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.16
           CIBW_ARCHS_LINUX: auto aarch64
         if: >
           runner.os != 'Windows' && (
