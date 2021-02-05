@@ -55,7 +55,7 @@ jobs:
         run: |
           echo "NUMPY=${{ matrix.cibw_numpy_version }}"
           echo "ARCH=${{ matrix.cibw_archs_linux }}"
-          echo "uname -m"
+          uname -m
 
       - name: Build wheels for CPython 3.9
         run: |
