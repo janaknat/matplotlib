@@ -64,7 +64,7 @@ jobs:
           CIBW_BUILD: "cp39-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: pip install certifi numpy==1.19.3
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.19.3; python -m pip cache list
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
 
@@ -76,7 +76,7 @@ jobs:
           CIBW_SKIP: "cp35-* cp36-* cp39-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: pip install certifi numpy==1.16
+          CIBW_BEFORE_BUILD: pip install certifi numpy==1.16; python -m pip cache list
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs_linux }}
 
