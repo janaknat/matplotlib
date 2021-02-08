@@ -38,12 +38,12 @@ jobs:
           python-version: '3.7'
 
       - name: Install cibuildwheel aarch64
-        if: ${{ matrix.cibw_archs }} == "aarch64"
+        if: ${{ matrix.cibw_archs }} == 'aarch64'
         run: |
           python -m pip install cibuildwheel==1.8.0
 
       - name: Install cibuildwheel x86
-        if: ${{ matrix.cibw_archs }} == "auto"
+        if: ${{ matrix.cibw_archs }} == 'auto'
         run: |
           python -m pip install cibuildwheel==1.6.3
 
