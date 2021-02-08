@@ -16,10 +16,10 @@ jobs:
       matrix:
               #os: [ubuntu-18.04, windows-latest, macos-latest]
         os: [ubuntu-18.04]
-        cibw_archs: ["aarch64", "auto" ]
-        #include:
-        #- os: ubuntu-18.04
-        #cibw_archs_linux: "aarch64"
+        cibw_archs: ["auto"]
+        include:
+        - os: ubuntu-18.04
+          cibw_archs: "aarch64"
 
     steps:
       - name: Set up QEMU
