@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Set up QEMU
-        if: runner.os == 'Linux'
+        if: matrix.cibw_archs == 'aarch64'
         uses: docker/setup-qemu-action@v1
         with:
           platforms: arm64
