@@ -48,9 +48,9 @@ jobs:
       - name: Build numpy 1.16 for aarch64
         if: matrix.cibw_archs == 'aarch64'
         run: |
-          git clone https://github.com/numpy/numpy.git
-          cd numpy
-          git checkout maintenance/1.6.x
+          wget https://files.pythonhosted.org/packages/04/b6/d7faa70a3e3eac39f943cc6a6a64ce378259677de516bd899dd9eb8f9b32/numpy-1.16.0.zip
+          unzip numpy-1.16.0.zip
+          cd numpy-1.16.0
           python -m cibuildwheel --output-dir .
         env:
           CIBW_BUILD: "cp37-* cp38-*"
