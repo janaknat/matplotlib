@@ -52,7 +52,7 @@ jobs:
           python -m pip install cibuildwheel==1.8.0
 
       - name: Build numpy 1.16 for aarch64
-        if: steps.numpy-aarch64-cache.outputs.cache-hit != 'true'
+        if: matrix.cibw_archs == 'aarch64' && steps.numpy-aarch64-cache.outputs.cache-hit != 'true'
         run: |
           wget https://files.pythonhosted.org/packages/04/b6/d7faa70a3e3eac39f943cc6a6a64ce378259677de516bd899dd9eb8f9b32/numpy-1.16.0.zip
           unzip numpy-1.16.0.zip
