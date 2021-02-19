@@ -38,10 +38,10 @@ jobs:
           python-version: '3.7'
 
       - uses: actions/cache@v2
-        id: numpy-aarch64-cache
+        id: numpy-aarch64-cache-new
         with:
           path: numpy-aarch64-cache/
-          key: numpy-aarch64-cache
+          key: numpy-aarch64-cache-new
 
       - name: ENV Variables
         run: |
@@ -57,7 +57,7 @@ jobs:
           wget https://files.pythonhosted.org/packages/04/b6/d7faa70a3e3eac39f943cc6a6a64ce378259677de516bd899dd9eb8f9b32/numpy-1.16.0.zip
           unzip numpy-1.16.0.zip
           cd numpy-1.16.0
-          python -m cibuildwheel --output-dir ../.numpy-aarch64-cache
+          python -m cibuildwheel --output-dir ../numpy-aarch64-cache
         env:
           CIBW_BUILD: "cp36-* cp37-* cp38-* pp3?-*"
           CIBW_ARCHS: aarch64
@@ -84,7 +84,7 @@ jobs:
           CIBW_BUILD: "cp37-* cp38-*"
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
-          CIBW_BEFORE_BUILD: ls numpy-aarch64-cache/ ; pip install certifi; pip install --find-links=.numpy-aarch64-cache/ numpy==1.16
+          CIBW_BEFORE_BUILD: ls numpy-aarch64-cache/ ; pip install certifi; pip install --find-links=numpy-aarch64-cache/ numpy==1.16
           MPL_DISABLE_FH4: "yes"
           CIBW_ARCHS_LINUX: ${{ matrix.cibw_archs }}
 
