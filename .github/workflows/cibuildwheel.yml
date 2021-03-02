@@ -16,7 +16,7 @@ jobs:
       matrix:
               #os: [ubuntu-18.04, windows-latest, macos-latest]
         os: [ubuntu-18.04]
-        numpy-version: ["1.16"]
+        numpy_version: ["1.16"]
         cibw_archs: ["auto"]
         include:
         - os: ubuntu-18.04
@@ -42,7 +42,7 @@ jobs:
         id: numpy-aarch64-cache-new
         with:
           path: numpy-aarch64-cache/
-          key: numpy-aarch64-cache-new-${{ matrix.numpy-version }}
+          key: numpy-aarch64-cache-new-${{ matrix.numpy_version }}
 
       - name: ENV Variables
         run: |
